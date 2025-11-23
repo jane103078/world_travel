@@ -11,7 +11,6 @@ from logic.ContinentLists import ContinentLists
 import os
 
 
-
 class WebUI:
     __all_cities = None
     __all_continentlists = []

@@ -22,6 +22,7 @@ class Database:
     __ContinentLists_collection = None
     APP_NAME = "travel_world"
 
+
     @classmethod
     def connect(cls):
         if cls.__connection is None:
