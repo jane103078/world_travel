@@ -1,0 +1,19 @@
+{% extends "default.html" %}
+
+{% block title %}Select a Continentlist and Show the Contents{% endblock %}
+{% block header %}Select a Continentlist and Show the Contents{% endblock %}
+
+{% block content %}
+    <form method="POST" action="/do_delete_continentlist">
+    <table class="data_entry_form">
+           <tr><th><label>Continentlist:</label></th>
+               <td>
+               {% set select_name = "continentlist" %}
+               {% include "select_continentlist.html" %}
+           </td></tr>
+
+           <tr><th colspan="2"><button type="submit"> DELETE </button> </th></tr>
+    </table>
+    </form>
+
+{% endblock %}

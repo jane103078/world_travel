@@ -1,0 +1,15 @@
+{% extends "default.html" %}
+{% block title %}Create a new Dream City{% endblock %}
+{% block header %}Please enter the information for a new Dream city in the form below{% endblock %}
+{% block content %}
+    <form method="POST" action="/do_create_dream_city">
+    <table class="data_entry_form">
+           <tr><th><label>City:</label></th><td><input type="text" name="city"></td></tr>
+           <tr><th><label>Country:</label></th><td><input type="text" name="country"></td></tr>
+           <tr><th><label>Attraction:</label></th><td><input type="text" name="attraction"></td></tr>
+           <tr><th><label>Best Season:</label></th><td><input type="text" name="best_season"></td></tr>
+        <tr><th><label>Language:</label></th><td><input type="text" name="language"></td></tr>
+           <tr><th colspan="2"><button type="submit"> CREATE </button> </th></tr>
+    </table>
+    </form>
+{% endblock %}

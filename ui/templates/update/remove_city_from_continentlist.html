@@ -1,0 +1,23 @@
+{% extends "default.html" %}
+
+{% block title %}Remove the city from a continentlist{% endblock %}
+{% block header %}Select a city to remove it from a continentlist:{% endblock %}
+
+{% block content %}
+    <form method="POST" action="/do_remove_city_from_continentlist">
+    <table class="data_entry_form">
+           <tr><th><label>City</label></th><td>
+               {% set select_name = "city" %}
+               {% include "select_city.html" %}
+           </td></tr>
+         <tr><th><label>Continentlist:</label></th><td>
+               {% set select_name = "continentlist" %}
+               {% include "select_continentlist.html" %}
+           </td></tr>
+
+
+           <tr><th colspan="2"><button type="submit"> REMOVE </button> </th></tr>
+    </table>
+    </form>
+
+{% endblock %}

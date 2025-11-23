@@ -1,0 +1,5 @@
+<select name="{{ select_name }}">
+    {% for continentlist in continentlists %}
+    <option value="{{ continentlist.get_key() }}">{{continentlist.get_name()}}</option>
+    {% endfor %}
+</select>

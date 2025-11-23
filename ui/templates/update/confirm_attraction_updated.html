@@ -1,0 +1,8 @@
+{% extends "default.html" %}
+{% block title %}Attraction Updated{% endblock %}
+{% block header %}{{ city.get_printable_key() }} was updated{% endblock %}
+
+{% block content %}
+<p>The new contents of the city are:</p>
+{{ city.to_html()|safe }}
+{% endblock %}

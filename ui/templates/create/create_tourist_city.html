@@ -1,0 +1,13 @@
+{% extends "default.html" %}
+{% block title %}Create a new Tourist City{% endblock %}
+{% block header %}Please enter the information for a new tourist city in the form below{% endblock %}
+{% block content %}
+    <form method="POST" action="/do_create_tourist_city">
+    <table class="data_entry_form">
+           <tr><th><label>City:</label></th><td><input type="text" name="city"></td></tr>
+           <tr><th><label>Country:</label></th><td><input type="text" name="country"></td></tr>
+           <tr><th><label>Attraction:</label></th><td><input type="text" name="attraction"></td></tr>
+           <tr><th colspan="2"><button type="submit"> CREATE </button> </th></tr>
+    </table>
+    </form>
+{% endblock %}

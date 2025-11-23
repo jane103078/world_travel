@@ -1,0 +1,16 @@
+{% extends "default.html" %}
+{% block title %}{{ continentlist.get_name() }}{% endblock %}
+{% block header %}{{ continentlist.get_name() }}{% endblock %}
+
+{% block content %}
+<img src="{{ continentlist.get_thumbnail() }}">
+<p>{{ continentlist.get_description() }}</p>
+
+<h2>Cities in this Continentlist:</h2>
+<ul>
+{% for city in continentlist %}
+<li>{{ city.to_html()|safe }}</li>
+{% endfor %}
+</ul>
+<p>{{ message_body }}</p>
+{% endblock %}

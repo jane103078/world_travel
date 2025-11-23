@@ -1,0 +1,6 @@
+{% extends "default.html" %}
+{% block title %}City Added to a ContinentList{% endblock %}
+{% block header %}City Added to a ContinentList{% endblock %}
+{% block content %}
+<p>The city {{ city.get_printable_key() }} was added to the continentlist {{ continentlist.get_printable_key() }} </p>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "default.html" %}
+
+{% block title %}Select a City and Update the attraction{% endblock %}
+{% block header %}Select a City and Update the attraction{% endblock %}
+
+{% block content %}
+    <form method="POST" action="/do_update_city_attraction">
+    <table class="data_entry_form">
+           <tr><th><label>City:</label></th><td>
+               {% set select_name = "city" %}
+               {% include "select_city.html" %}
+           </td></tr>
+            <tr><th><label>Attraction:</label></th><td><input type="text" name="attraction"></td></tr>
+           <tr><th colspan="2"><button type="submit"> UPDATE </button> </th></tr>
+    </table>
+    </form>
+
+{% endblock %}

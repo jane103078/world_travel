@@ -1,0 +1,6 @@
+{% extends "default.html" %}
+{% block title %}Tourist city "{{ city.get_city() }} in {{ city.get_country() }}" Created{% endblock %}
+{% block header %}Tourist city "{{ city.get_city() }} in {{ city.get_country() }}" Created{% endblock %}
+{% block content %}
+<p>{{ city.to_html()|safe }}</p>
+{% endblock %}

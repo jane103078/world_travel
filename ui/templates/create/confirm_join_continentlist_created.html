@@ -1,0 +1,17 @@
+{% extends "default.html" %}
+{% block title %}Continentlist"{{ new_continentlist.get_name() }}" Created{% endblock %}
+{% block header %}Continentlist"{{ new_continentlist.get_name() }}" Created{% endblock %}
+{% block content %}
+
+<p>The existing continentlists {{ first_continentlist.get_name() }} and {{ second_continentlist.get_name() }}
+    were successfully joined together to for  {{ new_continentlist.get_name() }}</p>
+<img src="{{ new_continentlist.get_thumbnail() }}">
+<p>{{ new_continentlist.get_description() }}</p>
+<h2>Cities</h2>
+    <ul>
+    {% for city in new_continentlist %}
+    <li>{{ city.to_html()|safe }}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "default.html" %}
+
+{% block title %}All Continent Lists{% endblock %}
+{% block header %}All Continent Lists{% endblock %}
+
+{% block content %}
+<ul>
+{% for continentlist in continentlists %}
+<li>
+<a href="/print_continentlist?continentlist={{ continentlist.get_key() }}">
+{{ continentlist.get_name() }}
+</a>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}

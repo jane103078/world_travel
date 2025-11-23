@@ -1,0 +1,9 @@
+{% extends "default.html" %}
+{% block title %}Continentlist"{{ continentlist.get_name() }}" Created{% endblock %}
+{% block header %}Continentlist"{{ continentlist.get_name() }}" Created{% endblock %}
+{% block content %}
+
+<img src="{{ continentlist.get_thumbnail() }}">
+<p>{{ continentlist.get_description() }}</p>
+
+{% endblock %}

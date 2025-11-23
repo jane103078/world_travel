@@ -1,0 +1,5 @@
+<select name="{{ select_name }}">
+    {% for city in cities %}
+    <option value="{{ city.get_key() }}">{{city.get_printable_key()}}</option>
+    {% endfor %}
+</select>

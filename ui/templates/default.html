@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Default Title{% endblock %}</title>
+  <link rel="stylesheet" href="static/world_city.css">
+</head>
+<body>
+<h1>{% block header %}Default Header{% endblock %}</h1>
+{% block content %}
+<p>Defualt Content</p>
+{% endblock %}
+{% block footer %}
+<hr>
+<a href="/">World City</a> Covered under <a href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0 DEED</a><br>
+Contact Hsing at MaryWonderland with any questions.
+{% endblock %}
+
+</body>
+</html>
