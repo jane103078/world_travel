@@ -7,3 +7,18 @@
 .data_entry_form{
     padding: 2em;
 }
+
+.top_button{
+    padding: .5em;
+    margin: .2em;
+    float: right;
+    color: white;
+    font-weight: bold;
+    background: pink;
+    font-family: sans-serif;
+}
+
+.top_button a{
+    color: white;
+    text-decoration: none;
+}

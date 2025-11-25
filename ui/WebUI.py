@@ -5,7 +5,7 @@
 # Description: WebUI
 # ***************************************************************
 import bcrypt
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect, url_for
 from flask_session import Session
 from logic.ContinentLists import ContinentLists
 import os
@@ -15,6 +15,11 @@ class WebUI:
     __all_cities = None
     __all_continentlists = []
     __app = Flask(__name__)
+    ALLOWED_PATHS = [
+        "/login",
+        "/do_login",
+        "/static/world_city.css",
+    ]
     MENU = {
         "Print": {
             "print_continentlist?continentlist=All%20Continents": "Print a list of all cities",
@@ -72,10 +77,17 @@ class WebUI:
         return field_value, None
 
     @staticmethod
-    @__app.route('/')
+    @__app.before_request
+    def before_request():
+        if "user" not in session:
+            if request.path not in WebUI.ALLOWED_PATHS:
+                return redirect(url_for("login"))
+
+    @staticmethod
     @__app.route('/index')
     @__app.route('/index.html')
     @__app.route('/index.php')
+    @__app.route('/')
     def homepage():
         return render_template("homepage.html", options=WebUI.MENU)
 
@@ -85,6 +97,7 @@ class WebUI:
         from ui.CreateRoutes import CreateRoutes
         from ui.UpdateRoutes import UpdateRoutes
         from ui.DeleteRoutes import DeleteRoutes
+        from ui.UserRoutes import UserRoutes
 
         if "APPDATA" in os.environ:
             path = os.environ["APPDATA"]
@@ -97,10 +110,11 @@ class WebUI:
         cls.__app.config["SESSION_TYPE"] = "filesystem"
         Session(cls.__app)
 
-        cls.__app.run(host="0.0.0.0",
+        cls.__app.run(
+                      host="0.0.0.0",
                       port=8443,
-                      ssl_context=(path + "/travel_world/cert.pem", path + "/travel_world/key.pem"),
-                      debug=True)
+                      ssl_context=(path + "/travel_world/cert.pem", path + "/travel_world/key.pem")
+                      )
 
 
 if __name__ == '__main__':

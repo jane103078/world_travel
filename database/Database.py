@@ -10,6 +10,7 @@ import os
 from logic.TouristCity import TouristCity
 from logic.DreamCity import DreamCity
 from logic.ContinentLists import ContinentLists
+from logic.User import User
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from configparser import ConfigParser
@@ -20,8 +21,8 @@ class Database:
     __database = None
     __cities_collection = None
     __ContinentLists_collection = None
+    __users_collection = None
     APP_NAME = "travel_world"
-
 
     @classmethod
     def connect(cls):
@@ -45,6 +46,7 @@ class Database:
             cls.__database = cls.__connection.WorldCity
             cls.__cities_collection = cls.__database.Cities
             cls.__ContinentLists_collection = cls.__database.ContinentLists
+            cls.__users_collection = cls.__database.Users
 
             # print("Client:", cls.__connection)
             # print("Database:", cls.__database)
@@ -60,7 +62,14 @@ class Database:
         cls.__cities_collection = cls.__database.Cities
         cls.__ContinentLists_collection.drop()
         cls.__ContinentLists_collection = cls.__database.ContinentLists
+        cls.__users_collection.drop()
+        cls.__users_collection = cls.__database.Users
 
+        user1 = User("Hsing", b'$2b$13$tnZM92073l7vTEOrlQaTFeLZ0h1rstQZiPLgdu0kQirgZbVokHgVu')
+        user2 = User("Mary", b'$2b$13$QpCWpm53dkg8ksAB1GUVmuZan.T5J029qPOgcuShSejz2okok6Bem')
+
+        user_dicts = [user.to_dict() for user in [user1, user2]]
+        cls.__users_collection.insert_many(user_dicts)
         all_cities, all_continentlists = cls.get_continent_lists()
 
         city_dicts = [city.to_dict() for city in all_cities]
@@ -81,6 +90,14 @@ class Database:
         return cities, continentlists
 
         # return ContinentLists.lookup(ContinentLists.ALL_CONTINENTS), continentlists
+
+    @classmethod
+    def read_user(cls, username):
+        user_dict = cls.__users_collection.find_one({'_id': username.lower()})
+        if user_dict is None:
+            return None
+        else:
+            return User.build(user_dict)
 
     @classmethod
     def get_continent_lists(cls):
@@ -138,7 +155,7 @@ class Database:
 
 if __name__ == "__main__":
     Database.connect()
-
+    print(Database.read_user("mary"))
     # """
     # Display all city keys and details
     # """
